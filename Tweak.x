@@ -1,7 +1,11 @@
 // Ersatz - Replace any text system-wide!
 // By Skitty
 
+#import <UIKit/UIKit.h>
+#import <rootless.h>
+
 static NSString *bundleIdentifier = @"xyz.skitty.ersatz";
+static NSString *settingsPath = ROOT_PATH_NS(@"/var/mobile/Library/Preferences/");
 
 static BOOL enabled = YES;
 static NSMutableDictionary *settings;
@@ -18,7 +22,7 @@ void refreshPrefs() {
 		settings = nil;
 	}
 	if (!settings) {
-		settings = [[NSMutableDictionary alloc] initWithContentsOfFile:[NSString stringWithFormat:@"/var/mobile/Library/Preferences/%@.plist", bundleIdentifier]];
+		settings = [[NSMutableDictionary alloc] initWithContentsOfFile:[NSString stringWithFormat:@"%@%@.plist", settingsPath, bundleIdentifier]];
 	}
 
 	keyedSettings = [[NSMutableDictionary alloc] init];

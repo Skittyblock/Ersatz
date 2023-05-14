@@ -5,6 +5,8 @@
 #import "EZAddPhraseViewController.h"
 #import "EZEditPhraseViewController.h"
 
+static NSString *settingsPath = ROOT_PATH_NS(@"/var/mobile/Library/Preferences/xyz.skitty.ersatz.plist");
+
 @implementation EZPhraseListViewController
 
 - (void)viewDidLoad {
@@ -27,7 +29,7 @@
 		_settings = (NSMutableDictionary *)CFBridgingRelease(CFPreferencesCopyMultiple(keyList, CFSTR("xyz.skitty.ersatz"), kCFPreferencesCurrentUser, kCFPreferencesAnyHost));
 		CFRelease(keyList);
 	} else {
-		_settings = [[NSMutableDictionary alloc] initWithContentsOfFile:@"/var/mobile/Library/Preferences/xyz.skitty.ersatz.plist"];
+		_settings = [[NSMutableDictionary alloc] initWithContentsOfFile:settingsPath];
 	}
 	if (!_settings) {
 		_settings = [[NSMutableDictionary alloc] init];
@@ -41,9 +43,9 @@
 - (void)updateSettings {
 	CFPreferencesSetAppValue((CFStringRef)@"strings", (CFPropertyListRef)_settings[@"strings"], CFSTR("xyz.skitty.ersatz"));
 	if (@available(iOS 11.0, *)) {
-		[_settings writeToURL:[NSURL fileURLWithPath:@"/var/mobile/Library/Preferences/xyz.skitty.ersatz.plist"] error:nil];
+		[_settings writeToURL:[NSURL fileURLWithPath:settingsPath] error:nil];
 	} else {
-		[_settings writeToFile:@"/var/mobile/Library/Preferences/xyz.skitty.ersatz.plist" atomically:YES];
+		[_settings writeToFile:settingsPath atomically:YES];
 	}
 	CFNotificationCenterPostNotification(CFNotificationCenterGetDarwinNotifyCenter(), CFSTR("xyz.skitty.ersatz.prefschanged"), nil, nil, true);
 }

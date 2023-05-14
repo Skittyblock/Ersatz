@@ -1,12 +1,12 @@
 Package: xyz.skitty.ersatz
 Name: Ersatz
 Depends: mobilesubstrate, preferenceloader
-Version: 1.0
+Version: 1.0.1
 Architecture: iphoneos-arm
 Description: Replace any text, system-wide!
 Icon: https://skitty.xyz/repo/icons/xyz.skitty.ersatz.png
-Depiction: https://skitty.xyz/repo/depictions/?p=xyz.skitty.ersatz
-SileoDepiction: https://skitty.xyz/repo/depictions/?s=xyz.skitty.ersatz
+Depiction: https://skitty.xyz/repo/depictions/xyz.skitty.ersatz/
+SileoDepiction: https://skitty.xyz/repo/depictions/xyz.skitty.ersatz/sileo.json
 Maintainer: Skitty
 Author: Skitty
 Section: Tweaks
